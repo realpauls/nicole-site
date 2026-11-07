@@ -80,7 +80,47 @@ export const CONTENT = [
   'experiential marketing',
   'Greater Philadelphia',
   'University of Delaware',
+  // her LinkedIn experience (screenshots via Paul, 2026-11-07)
+  'Carvertise',
+  'Digitas Health',
+  '$0.7M+ in social media and print campaigns for GSK',
+  '16 million impressions and 58K landing page views',
+  'first TikTok campaign: a 24% response rate, 8% above industry benchmarks',
+  'The Media Dinner Club',
+  'Monday Girl',
+  '40 bright green Wicked cars',
 ];
+
+// The Experience timeline, newest first, with dates exactly as on her LinkedIn (2026-11-07). Pango Financial is dated
+// from her clients' 2020 reviews. The Wicked green cars (July 2025) were at Carvertise, not Lime Media.
+export const EXPERIENCE = [
+  ['SEP 2026 — PRESENT', 'Senior Account Executive · Lime Media · Remote'],
+  ['DEC 2025 — PRESENT', 'Account Executive · Seen Media Group · New York'], // ⏳ LinkedIn still says Present; ask Nicole
+  ['JUN 2025 — PRESENT', 'Philadelphia Lead · The Media Dinner Club · Freelance'],
+  ['JAN 2025 — DEC 2025', 'Agency Programs Manager · Carvertise'],
+  ['MAR 2022 — JAN 2025', 'Account Executive · Digitas Health · Philadelphia'],
+  ['OCT 2021 — APR 2022', 'Digital Account Executive · Creative Solutions International'],
+  ['2020', 'Account Executive · Pango Financial'],
+  ['2018 — 2020', 'Social media, content & sales · Tribe Kelley, Dallas Shaw, Uncommon James · Nashville'],
+  ['2016 — 2017', 'Early career · Victoria’s Secret PINK, Ross Stores, United Nations Project Xite, FashInvest'],
+  ['EDUCATION', 'University of Delaware'],
+];
+
+// "Kind words": three short quotes from her Pango Financial clients' 2020 reviews (her LinkedIn, via Paul 2026-11-07).
+// Reviewers are private people, so the site never names them: every quote is credited the same way.
+export const QUOTES = {
+  credit: 'Pango Financial client, 2020',
+  quotes: [
+    '“I always felt that I had an advocate at Pango.”',
+    '“She even called me within 24 hours to update me on the progress of my loan application.”',
+    '“She was kind, attentive and very patient with me. Give her a raise ASAP!!”',
+  ],
+};
+
+// "What she brings", in order, all plain (no highlighted pills), from her LinkedIn roles (2026-11-07).
+export const SKILLS = ['Experiential marketing', 'Mobile out-of-home', 'Pop-ups & brand activations', 'Agency partnerships',
+  'Account management', 'Social media strategy', 'Healthcare marketing', 'Paid social & search',
+  'Content & photography', 'Influencer campaigns', 'Cross-functional teams', 'Legal & regulatory review'];
 
 // Nicole is not job hunting (Paul, 2026-11-06: she just started at Lime Media), so nothing may suggest she's looking.
 // Her phone and personal email never go on the site; contact is the form and LinkedIn.

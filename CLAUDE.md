@@ -36,6 +36,8 @@ Five chapters: Intro · About · Experience · Skills · Contact (`CHAPTERS` in 
 
 From her LinkedIn (screenshot via Paul, 2026-11-06); her résumé will win where they differ: Senior Account Executive at Lime Media; Greater Philadelphia; University of Delaware; https://www.linkedin.com/in/nicole-foley-/. Also from her LinkedIn posts (read 2026-11-06): the Wicked green cars activation in Times Square, NY Ad Week and her Philadelphia Ad Club article, Monday Girl. The brand line is a draft until her résumé and answers arrive.
 
+**Experience, skills and kind words (Paul, 2026-11-07)** come from her LinkedIn experience screenshots: roles and dates exactly as LinkedIn shows them (`EXPERIENCE` in facts). She joined Lime Media in Sep 2026; the Wicked green cars (Jul 2025) were at **Carvertise**, not Lime Media. Seen Media Group still says "Present" on LinkedIn, so the page asks "Still current?" until Nicole answers. "Kind words" are three short quotes from her Pango Financial clients' 2020 reviews; reviewers are private people and are never named (`QUOTES`, tested).
+
 **Agency partners stay unnamed (Paul, 2026-11-07).** When the site covers her Wicked work, credit the media agency and its people generically ("agency partners"). Serino Coyne may be named. The reasons and the names are in `PLAN.md` (local only); the hashed leftover test in `content.test.mjs` blocks them on the page.
 
 ## Hosting

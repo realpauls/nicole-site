@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { CONTENT, FORBIDDEN, LEFTOVERS, LEFTOVER_WORD_HASHES, LAUNCHED, LINKEDIN } from '../lib/facts.mjs';
+import { CONTENT, FORBIDDEN, LEFTOVERS, LEFTOVER_WORD_HASHES, LAUNCHED, LINKEDIN, EXPERIENCE, QUOTES, SKILLS } from '../lib/facts.mjs';
 import { read, markup, text, tags, publicFiles } from '../lib/site.mjs';
 
 const html = read('index.html');
@@ -70,4 +70,25 @@ test('every color comes from the tokens at the top of the stylesheet, so a new s
   assert.deepEqual(hexes, [], 'hard-coded colors outside :root');
   const rgbs = [...rest.matchAll(/rgb\((\d+) (\d+) (\d+)/g)].filter((m) => !(m[1] === m[2] && m[2] === m[3]));
   assert.deepEqual(rgbs.map((m) => m[0]), [], 'colored rgb() outside :root');
+});
+
+const clean = (s) => text(s).replace(/\s+/g, ' ').replace(/ ([,.])/g, '$1').trim();
+
+test('the Experience timeline lists every role, newest first, with LinkedIn’s dates', () => {
+  const roles = [...markup(html).matchAll(/<div class="role[^"]*">\s*<div class="when">([\s\S]*?)<\/div>\s*<h3>([\s\S]*?)<\/h3>/g)]
+    .map((m) => [clean(m[1].replace(/<span class="todo">[\s\S]*?<\/span>/g, '')), clean(m[2])]);
+  assert.deepEqual(roles, EXPERIENCE);
+});
+
+test('kind words: the three agreed quotes, each credited without naming the reviewer', () => {
+  const block = markup(html).match(/<div class="grid quotes">([\s\S]*?)<\/div>/)[1];
+  assert.deepEqual([...block.matchAll(/<blockquote>([\s\S]*?)<\/blockquote>/g)].map((m) => clean(m[1])), QUOTES.quotes);
+  const credits = [...block.matchAll(/<figcaption>([\s\S]*?)<\/figcaption>/g)].map((m) => clean(m[1]));
+  assert.deepEqual(credits, QUOTES.quotes.map(() => QUOTES.credit));
+});
+
+test('skills are the agreed list, in order, with none highlighted', () => {
+  const pills = markup(html).match(/<div class="pills skill-pills">([\s\S]*?)<\/div>/)[1];
+  assert.deepEqual([...pills.matchAll(/<span>([\s\S]*?)<\/span>/g)].map((m) => clean(m[1])), SKILLS);
+  assert.doesNotMatch(pills, /class="(hl|on|chosen)"/);
 });
