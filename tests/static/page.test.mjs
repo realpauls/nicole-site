@@ -1,7 +1,7 @@
 // The homepage's markup: links, anchors, images, scripts, SEO tags and the launch switch.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { LAUNCHED, SITE, ALLOWED_HOSTS, CHAPTERS, SHARE_CARD } from '../lib/facts.mjs';
@@ -43,6 +43,13 @@ test('the top bar shows just "Nicole." then the chapters, with no "1 / 5" count'
   const header = markup(html).match(/<header class="bar">[\s\S]*?<\/header>/)?.[0] ?? '';
   assert.match(header, /<a class="logo" href="#intro">Nicole<b>\.<\/b><\/a>/);
   assert.doesNotMatch(header, /id="where"|\b\d+ \/ \d+\b/);
+});
+
+test('photos on the site carry no location or camera details', () => {
+  for (const img of tags(html, 'img').filter((i) => /\.jpe?g$/.test(i.attrs.src))) {
+    const bytes = readFileSync(join(PUBLIC, img.attrs.src)).toString('latin1');
+    assert.doesNotMatch(bytes, /Exif\0\0|GPS|iPhone|Apple/, `${img.attrs.src} still has metadata: re-encode it`);
+  }
 });
 
 test('the hero is one portrait, not the template site’s photo with three bouncing cards (Paul, 2026-11-06)', () => {
@@ -90,8 +97,9 @@ test('every image\'s width and height match the real file', () => {
 });
 
 test('images have alt text and dimensions', () => {
-  // No photos yet (2026-11-06): the hero shows a placeholder until Nicole sends hers.
-  for (const img of tags(html, 'img')) {
+  const imgs = tags(html, 'img');
+  assert.ok(imgs.some((i) => i.attrs.src === 'images/nicole-headshot.jpg'), 'expected her headshot in the hero');
+  for (const img of imgs) {
     assert.ok(img.attrs.alt?.trim(), `missing alt: ${img.tag}`);
     assert.ok(img.attrs.width && img.attrs.height, `missing width/height: ${img.tag}`);
   }

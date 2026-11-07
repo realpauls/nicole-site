@@ -20,9 +20,13 @@ test('the hero is one still portrait: no stat cards and nothing bounces (Paul, 2
   expect(moving).toBe(0);
 });
 
-test('portrait is a sensible size, and its caption sits under it without covering it', async ({ page }) => {
-  // A placeholder until Nicole's photo arrives; then also check the image loads.
+test('her photo loads, fills the arch and is a sensible size, and its caption sits under it without covering it', async ({ page }) => {
+  const img = page.locator('.portrait .frame img');
+  await expect.poll(() => img.evaluate((el) => el.complete && el.naturalWidth > 0)).toBe(true);
   const frame = await page.locator('.portrait .frame').boundingBox();
+  const pic = await img.boundingBox();
+  expect([Math.round(pic.width), Math.round(pic.height)], 'photo fills its frame').toEqual([Math.round(frame.width), Math.round(frame.height)]);
+  expect(await img.evaluate((el) => getComputedStyle(el).objectFit)).toBe('cover');
   expect(frame.width).toBeGreaterThanOrEqual(isPhoneLayout(page) ? 180 : 280);
   expect(frame.height / frame.width).toBeCloseTo(1.25, 1);
   const caption = await page.locator('.portrait figcaption').boundingBox();

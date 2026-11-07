@@ -29,6 +29,7 @@ export const LINKEDIN = 'https://www.linkedin.com/in/nicole-foley-/';
 export const PUBLIC_FILES = [
   '404.html',
   '_headers',
+  'images/nicole-headshot.jpg',
   'images/share-card.jpg',
   'index.html',
   'robots.txt',

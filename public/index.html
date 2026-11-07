@@ -112,9 +112,7 @@
   .portrait::before { content:""; position:absolute; top:18px; left:18px; width:100%; border:2px solid rgb(var(--accent-2-rgb) / .55); }
   .portrait .frame { position:relative; overflow:hidden; box-shadow:0 30px 70px rgb(0 0 0 / .5);
     background:linear-gradient(160deg, var(--accent-pale) 0%, var(--accent) 55%, var(--accent-night) 100%); }
-  .portrait .frame img { width:100%; height:100%; object-fit:cover; object-position:50% 15%; display:block; }
-  .frame.placeholder { display:grid; place-items:center; text-align:center; padding:20px; color:#fff; font-size:15px; font-weight:500; }
-  .frame.placeholder span { padding:8px 14px; border:1px dashed rgb(255 255 255 / .7); border-radius:999px; background:rgb(0 0 0 / .18); }
+  .portrait .frame img { width:100%; height:100%; object-fit:cover; object-position:50% 30%; display:block; } /* square headshot: the arch trims the sides */
   .portrait figcaption { position:relative; margin-top:30px; text-align:center; font-size:14px; color:var(--muted); }
   .portrait figcaption b { color:var(--white); font-weight:500; }
   @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
@@ -227,7 +225,6 @@
     .portrait { order:-1; width:min(62%, 32vh); width:min(62%, 32svh); }
     .portrait::before { top:10px; left:10px; }
     .portrait figcaption { margin-top:16px; font-size:13px; }
-    .frame.placeholder { font-size:13px; padding:12px; }
     .badge { margin-bottom:18px; }
     .grid { grid-template-columns:1fr; }
     .contact, .contact.open { padding:48px 20px; grid-template-columns:1fr; gap:32px; }
@@ -266,7 +263,8 @@
     </div>
   </div>
   <figure class="portrait">
-    <div class="frame placeholder"><span>Nicole’s photo</span></div>
+    <!-- Headshot via Paul, 2026-11-06 (original in mockups/photos/headshot.jpeg; web copy re-encoded without metadata). -->
+    <div class="frame"><img src="images/nicole-headshot.jpg" alt="Nicole Foley smiling, in a white shirt" width="774" height="774"></div>
     <figcaption><b>Nicole Foley</b> · Lime Media</figcaption>
   </figure>
 </div></div>
