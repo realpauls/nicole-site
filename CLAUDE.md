@@ -35,6 +35,8 @@ Five chapters: Intro · About · Experience · Skills · Contact (`CHAPTERS` in 
 
 From her LinkedIn (screenshot via Paul, 2026-11-06); her résumé will win where they differ: Senior Account Executive at Lime Media; Greater Philadelphia; University of Delaware; https://www.linkedin.com/in/nicole-foley-/. The headline "Nicole brings brands to life, in person." is a draft until her résumé and answers arrive.
 
+**Agency partners stay unnamed (Paul, 2026-11-07).** When the site covers her Wicked work, credit the media agency and its people generically ("agency partners"). Serino Coyne may be named. The reasons and the names are in `PLAN.md` (local only); the hashed leftover test in `content.test.mjs` blocks them on the page.
+
 ## Hosting
 
 - **Now:** review copy on GitHub Pages at https://realpauls.github.io/nicole-site/ from the public repo `realpauls/nicole-site` (Paul, 2026-11-06: public is fine for the review stage; GitHub Pages needs a public repo on this plan). `.github/workflows/pages.yml` runs the static tests, then publishes `public/`. `noindex` is on.

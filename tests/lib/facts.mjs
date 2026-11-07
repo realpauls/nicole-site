@@ -93,9 +93,9 @@ export const FORBIDDEN = [
 ];
 
 // Nothing copied from the template site may be left behind: its old colors, and (as sha256 prefixes, so this public repo
-// doesn't name them) the template site's owner, employer, domain and form id.
+// doesn't name them) the template site's owner's names, employer, domain and form id.
 export const LEFTOVERS = [/#7c3aed/i, /purple/i, /NYPD/];
-export const LEFTOVER_WORD_HASHES = ['81ccc0de58dd19cf', 'b8b22aedc372aa89', 'ee58f33c8d93429f', 'e44bb89c8125ff4b'];
+export const LEFTOVER_WORD_HASHES = ['81ccc0de58dd19cf', 'b8b22aedc372aa89', 'ee58f33c8d93429f', 'e44bb89c8125ff4b', '66f86b1f3c61159b'];
 
 // The 5 chapters, in page order (the template site's layout, Paul 2026-11-06). Both the desktop names and the phone picker list them all.
 export const CHAPTERS = [
