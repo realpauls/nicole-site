@@ -12,39 +12,59 @@ test('nothing runs off the side of the screen', async ({ page }) => {
   expect(scroll).toBeLessThanOrEqual(width);
 });
 
-test('the hero is one still portrait: no stat cards and nothing bounces (Paul, 2026-11-06)', async ({ page }) => {
+test('the intro is option B: three fanned photos and a ticker; only the ticker moves (Nicole, 2026-11-07)', async ({ page }) => {
   // Kept different from the template site, whose photo has three bouncing stat cards.
-  await expect(page.locator('.chapter-intro .portrait')).toHaveCount(1);
-  await expect(page.locator('.chip, .collage, .float')).toHaveCount(0);
-  const moving = await page.locator('.chapter-intro *').evaluateAll((els) => els.filter((el) => getComputedStyle(el).animationName !== 'none').length);
-  expect(moving).toBe(0);
+  await expect(page.locator('.fan figure')).toHaveCount(3);
+  await expect(page.locator('.chip, .collage, .float, .portrait')).toHaveCount(0);
+  const moving = await page.locator('.chapter-intro *').evaluateAll((els) => els.filter((el) => getComputedStyle(el).animationName !== 'none').map((el) => el.parentElement.className));
+  expect(moving).toEqual(['ticker']);
 });
 
-test('her photo loads, fills the arch and is a sensible size, and its caption sits under it without covering it', async ({ page }) => {
-  const img = page.locator('.portrait .frame img');
-  await expect.poll(() => img.evaluate((el) => el.complete && el.naturalWidth > 0)).toBe(true);
-  const frame = await page.locator('.portrait .frame').boundingBox();
-  const pic = await img.boundingBox();
-  expect([Math.round(pic.width), Math.round(pic.height)], 'photo fills its frame').toEqual([Math.round(frame.width), Math.round(frame.height)]);
-  expect(await img.evaluate((el) => getComputedStyle(el).objectFit)).toBe('cover');
-  expect(frame.width).toBeGreaterThanOrEqual(isPhoneLayout(page) ? 180 : 280);
-  expect(frame.height / frame.width).toBeCloseTo(1.25, 1);
-  const caption = await page.locator('.portrait figcaption').boundingBox();
-  expect(overlaps(frame, caption)).toBe(false);
-  expect(caption.y).toBeGreaterThan(frame.y + frame.height);
+test('all three photos load, keep their shape, stay on screen, and her face is never covered', async ({ page }) => {
+  const width = page.viewportSize().width;
+  for (const img of await page.locator('.fan img').all()) {
+    await expect.poll(() => img.evaluate((el) => el.complete && el.naturalWidth > 0)).toBe(true);
+    expect(await img.evaluate((el) => getComputedStyle(el).objectFit)).toBe('cover');
+    const fig = await img.locator('xpath=..').boundingBox();
+    expect(fig.x, 'left edge on screen').toBeGreaterThanOrEqual(-4); // a few px of a tilted print may cross the edge
+    expect(fig.x + fig.width, 'right edge on screen').toBeLessThanOrEqual(width + 4);
+  }
+  const head = page.locator('.fan .f3 img');
+  const box = await head.boundingBox();
+  expect(box.width).toBeGreaterThanOrEqual(isPhoneLayout(page) ? 120 : 260);
+  // her face (center, upper third of the photo) is the topmost thing on screen there
+  const onTop = await page.evaluate(([x, y]) => document.elementFromPoint(x, y)?.getAttribute('src'), [box.x + box.width / 2, box.y + box.height * 0.35]);
+  expect(onTop).toBe('images/nicole-headshot.jpg');
 });
 
-test('on desktop the whole portrait and caption fit on the Intro screen', async ({ page }) => {
+test('the photos never cover her name, the brand line or the buttons', async ({ page }) => {
+  const figs = await Promise.all((await page.locator('.fan figure').all()).map((f) => f.boundingBox()));
+  for (const sel of ['h1', '.tagline', '.hero .actions']) {
+    const box = await page.locator(sel).boundingBox();
+    for (const f of figs) expect(overlaps(box, f), sel).toBe(false);
+  }
+});
+
+test('the ticker rolls, and stands still for visitors who ask for reduced motion', async ({ page }) => {
+  const ticker = page.locator('.ticker div');
+  expect(await ticker.evaluate((el) => getComputedStyle(el).animationName)).toBe('roll');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  expect(await ticker.evaluate((el) => getComputedStyle(el).animationName)).toBe('none');
+});
+
+test('on desktop the photos, the ticker and "Next" all fit on the Intro screen', async ({ page }) => {
   test.skip(!usesSlides(page), 'desktop only (above 960px)');
-  const caption = await page.locator('.portrait figcaption').boundingBox();
-  expect(caption.y + caption.height).toBeLessThanOrEqual(page.viewportSize().height);
+  for (const sel of ['.fan', '.ticker', '.chapter-intro .next-down']) {
+    const box = await page.locator(sel).boundingBox();
+    expect(box.y + box.height, sel).toBeLessThanOrEqual(page.viewportSize().height);
+  }
 });
 
-test('on phones, the photo and the headline both fit on the first screen', async ({ page }) => {
+test('on phones, the photos and her name both fit on the first screen', async ({ page }) => {
   test.skip(!isPhoneLayout(page), 'phone layout only');
   const h1 = await page.locator('h1').boundingBox();
-  const photo = await page.locator('.portrait .frame').boundingBox();
-  expect(photo.y).toBeLessThan(h1.y);
+  const fan = await page.locator('.fan').boundingBox();
+  expect(fan.y).toBeLessThan(h1.y);
   expect(h1.y + h1.height).toBeLessThanOrEqual(page.viewportSize().height);
 });
 
@@ -60,7 +80,7 @@ test('the right chapter navigation shows for the screen size', async ({ page }) 
     for (const a of await names.locator('a').all()) await expect(a).toBeVisible();
     await expect(names.locator('a.cta')).toHaveText('Contact');
   }
-  await expect(page.locator('.bar .logo')).toHaveText('Nicole.');
+  await expect(page.locator('.bar .logo')).toHaveText('Nicole Foley');
 });
 
 test('the top bar stays on screen while scrolling', async ({ page }) => {

@@ -4,8 +4,8 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
-import { LAUNCHED, SITE, ALLOWED_HOSTS, CHAPTERS, SHARE_CARD } from '../lib/facts.mjs';
-import { PUBLIC, read, markup, tags, jpegSize } from '../lib/site.mjs';
+import { LAUNCHED, SITE, ALLOWED_HOSTS, CHAPTERS, SHARE_CARD, INTRO } from '../lib/facts.mjs';
+import { PUBLIC, read, markup, tags, text, jpegSize } from '../lib/site.mjs';
 
 const html = read('index.html');
 const local = (url) => !/^(https?:|data:|mailto:|tel:|#)/i.test(url);
@@ -39,9 +39,9 @@ test('desktop names and the phone picker both list every chapter, in order', () 
   assert.match(page, /<button class="picker" id="picker"[^>]*aria-controls="chapter-list"/);
 });
 
-test('the top bar shows just "Nicole." then the chapters, with no "1 / 5" count', () => {
+test('the top bar shows just her name, then the chapters, with no "1 / 5" count', () => {
   const header = markup(html).match(/<header class="bar">[\s\S]*?<\/header>/)?.[0] ?? '';
-  assert.match(header, /<a class="logo" href="#intro">Nicole<b>\.<\/b><\/a>/);
+  assert.match(header, /<a class="logo" href="#intro">Nicole Foley<\/a>/);
   assert.doesNotMatch(header, /id="where"|\b\d+ \/ \d+\b/);
 });
 
@@ -52,9 +52,23 @@ test('photos on the site carry no location or camera details', () => {
   }
 });
 
-test('the hero is one portrait, not the template site’s photo with three bouncing cards (Paul, 2026-11-06)', () => {
-  assert.equal((markup(html).match(/<figure class="portrait">/g) ?? []).length, 1);
-  assert.doesNotMatch(html, /class="[^"]*\b(collage|chip|float)\b|@keyframes float/);
+test('the intro is option B: her name, the brand line, three fanned photos and a ticker (Nicole, 2026-11-07)', () => {
+  const intro = markup(html).match(/<section class="chapter chapter-intro"[\s\S]*?<\/section>/)[0];
+  assert.equal(text(intro.match(/<h1[\s\S]*?<\/h1>/)[0]).replace(/\s+/g, ' ').trim(), INTRO.name);
+  const tagline = intro.match(/<p class="tagline">([\s\S]*?)<\/p>/)[1];
+  assert.equal(text(tagline).replace(/\s+/g, ' ').replace(/ ([,.])/g, '$1').trim(), INTRO.tagline);
+  assert.match(tagline, new RegExp(`<mark>${INTRO.highlight}</mark>`));
+  const fan = intro.match(/<div class="fan">([\s\S]*?)<\/div>\s*<\/div><\/div>/)[1];
+  assert.deepEqual(tags(fan, 'img').map((i) => i.attrs.src), INTRO.photos);
+  assert.equal(tags(fan, 'figcaption').length, 3);
+  const ticker = intro.match(/<div class="ticker" aria-hidden="true"><div>([\s\S]*?)<\/div><\/div>/)?.[1] ?? '';
+  const items = text(ticker).split('✦').map((t) => t.trim()).filter(Boolean);
+  assert.deepEqual(items, [...INTRO.ticker, ...INTRO.ticker], 'the ticker lists the highlights twice, so it loops seamlessly');
+  assert.match(html, /@media \(prefers-reduced-motion:reduce\) \{ \.ticker div \{ animation:none; \}/);
+});
+
+test('nothing from the template site’s hero is back: no bouncing stat cards, no arched portrait', () => {
+  assert.doesNotMatch(html, /class="[^"]*\b(collage|chip|float|portrait)\b|@keyframes float/);
 });
 
 test('every chapter but the last ends with a "Next" link to the following chapter', () => {

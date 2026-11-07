@@ -8,178 +8,167 @@
 <title>Nicole Foley · Senior Account Executive, Experiential Marketing</title>
 <meta name="description" content="Nicole Foley is a Senior Account Executive at Lime Media, an experiential marketing company, based in Greater Philadelphia.">
 <meta property="og:title" content="Nicole Foley · Senior Account Executive">
-<meta property="og:description" content="Experiential marketing at Lime Media. Based in Greater Philadelphia.">
+<meta property="og:description" content="Making brands impossible to miss, in the real world. Experiential marketing at Lime Media.">
 <meta property="og:type" content="website">
-<!-- At launch, make these absolute (https://<domain>/images/share-card.jpg) and add og:url + canonical -->
-<meta property="og:image" content="images/share-card.jpg">
+<!-- At launch, make these absolute (https://<domain>/images/share-card-b.jpg) and add og:url + canonical -->
+<meta property="og:image" content="images/share-card-b.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230f766e'/><text x='32' y='44' font-family='Georgia,serif' font-size='34' fill='white' text-anchor='middle'>N</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230d1b16'/><text x='32' y='45' font-family='Arial,sans-serif' font-weight='800' font-size='34' fill='%23c8f169' text-anchor='middle'>n</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  /* Colors: placeholders until Nicole picks her scheme. Every color on the page comes from these tokens,
-     so a new scheme only changes this block (and the favicon above, 404.html and the share card). */
+  /* Look: option B "Marquee", chosen by Nicole (via Paul, 2026-11-07). Light page, bold grotesque type, lime highlights.
+     Colors are placeholders until Nicole picks her scheme. Every color comes from these tokens, so a new scheme only
+     changes this block (and the favicon above, 404.html and the share card). */
   :root {
-    --black:#0b1112; --card:#131b1d; --line:#24302f;
-    --white:#ffffff; --paper:#f5f8f8; --ink:#101818; --muted:#9fb0b0; --muted-dark:#526363; --border:#dce8e7;
-    --accent:#0f766e; --accent-hover:#0b5f58; --accent-2:#5eead4; --accent-soft:#d5f5ef;
-    --accent-rgb:15 118 110; --accent-2-rgb:94 234 212;
-    --accent-deep:#134e4a; --accent-night:#062523; --accent-pale:#99f6e4;
+    --bg:#f3f7f4; --surface:#ffffff; --ink:#0d1b16; --muted:#55645e; --line:#d5e2dc;
+    --accent:#0f766e; --accent-soft:#d9f0ea; --pop:#c8f169;
+    --night:#0d1b16; --night-card:#16271f; --night-line:#26392f; --night-muted:#a9bab3;
+    --ink-rgb:13 27 22; --bg-rgb:243 247 244; --pop-rgb:200 241 105;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   :root { --bar:64px; }
   html { scroll-behavior:smooth; scroll-padding-top:var(--bar); scroll-snap-type:y proximity; }
-  body { font-family:Inter, system-ui, sans-serif; background:var(--black); color:var(--white); line-height:1.6; -webkit-font-smoothing:antialiased; }
-  .wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
-  .serif { font-family:"Instrument Serif", Georgia, serif; font-weight:400; }
+  body { font-family:Inter, system-ui, sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 20px; }
+  .display { font-family:"Bricolage Grotesque", Inter, sans-serif; font-weight:800; letter-spacing:-.035em; }
   a { color:inherit; }
+  mark { background:var(--pop); color:var(--ink); padding:0 .15em; }
 
   /* Draft placeholders: what Nicole's answers will fill in. A test keeps them off the page at launch. */
-  .todo { display:inline-block; padding:2px 10px; border:1px dashed rgb(var(--accent-2-rgb) / .6); border-radius:8px; background:rgb(var(--accent-rgb) / .1); color:var(--accent-2); font-size:.9em; font-style:normal; }
-  .light .todo { color:var(--accent); border-color:rgb(var(--accent-rgb) / .5); }
+  .todo { display:inline-block; padding:2px 10px; border:1px dashed rgb(var(--ink-rgb) / .35); border-radius:8px; background:var(--accent-soft); color:var(--accent); font-size:.9em; font-style:normal; font-weight:500; letter-spacing:0; }
+  .dark .todo { background:rgb(var(--pop-rgb) / .08); border-color:rgb(var(--pop-rgb) / .5); color:var(--pop); }
 
   /* Top bar: name, then every chapter name on desktop; phones get one "01 Intro ▾" picker. */
-  .bar { position:sticky; top:0; z-index:10; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); background:rgb(11 17 18 / .9); border-bottom:1px solid rgb(255 255 255 / .06); }
+  .bar { position:sticky; top:0; z-index:10; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); background:rgb(var(--bg-rgb) / .9); border-bottom:1px solid var(--line); }
   .bar-inner { display:flex; align-items:center; gap:20px; height:var(--bar); }
-  .logo { flex:none; font-weight:600; font-size:19px; letter-spacing:-.01em; text-decoration:none; }
-  .logo b { color:var(--accent-2); }
-  .names { display:flex; gap:2px; margin-left:auto; }
-  .names a { padding:8px 12px; border-radius:999px; font-size:14px; color:var(--muted); text-decoration:none; white-space:nowrap; }
-  .names a:hover { color:var(--white); }
-  .names a[aria-current="true"] { background:rgb(var(--accent-rgb) / .3); color:var(--white); }
-  .names a.cta { margin-left:6px; background:var(--accent); color:#fff; font-weight:500; }
-  .names a.cta[aria-current="true"] { box-shadow:0 0 0 2px var(--accent-2); }
-  .picker { display:none; margin-left:auto; position:relative; overflow:hidden; align-items:center; gap:8px; height:42px; padding:0 16px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--white); font:inherit; font-size:15px; cursor:pointer; }
-  .picker .n { font-size:13px; color:var(--accent-2); font-variant-numeric:tabular-nums; }
+  .logo { flex:none; font-family:"Bricolage Grotesque", Inter, sans-serif; font-weight:800; font-size:21px; letter-spacing:-.02em; text-transform:lowercase; text-decoration:none; }
+  .names { display:flex; gap:4px; margin-left:auto; }
+  .names a { padding:8px 14px; border-radius:999px; font-size:14px; color:var(--muted); text-decoration:none; white-space:nowrap; }
+  .names a:hover { color:var(--ink); }
+  .names a[aria-current="true"] { background:var(--ink); color:var(--bg); }
+  .names a.cta { margin-left:6px; background:var(--pop); color:var(--ink); font-weight:600; }
+  .names a.cta[aria-current="true"] { box-shadow:0 0 0 2px var(--ink); }
+  .picker { display:none; margin-left:auto; position:relative; overflow:hidden; align-items:center; gap:8px; height:42px; padding:0 16px; border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--ink); font:inherit; font-size:15px; cursor:pointer; }
+  .picker .n { font-size:13px; font-weight:600; color:var(--accent); font-variant-numeric:tabular-nums; }
   .picker .chev { font-size:10px; color:var(--muted); transition:transform .2s; }
   .picker[aria-expanded="true"] .chev { transform:rotate(180deg); }
-  .picker .fill { position:absolute; left:0; bottom:0; height:2px; width:20%; background:var(--accent-2); transition:width .3s; }
-  .chapter-list { position:absolute; left:0; right:0; top:100%; z-index:11; display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:10px 20px 16px; background:var(--black); border-bottom:1px solid var(--line); box-shadow:0 24px 40px rgb(0 0 0 / .45); }
+  .picker .fill { position:absolute; left:0; bottom:0; height:3px; width:20%; background:var(--pop); transition:width .3s; }
+  .chapter-list { position:absolute; left:0; right:0; top:100%; z-index:11; display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:10px 20px 16px; background:var(--bg); border-bottom:1px solid var(--line); box-shadow:0 24px 40px rgb(var(--ink-rgb) / .15); }
   .chapter-list[hidden] { display:none; }
-  .chapter-list a { display:flex; gap:10px; align-items:baseline; padding:13px 12px; border-radius:12px; font-size:15px; color:var(--white); text-decoration:none; background:var(--card); border:1px solid var(--line); }
-  .chapter-list a .n { font-size:12px; color:var(--accent-2); font-variant-numeric:tabular-nums; }
-  .chapter-list a[aria-current="true"] { border-color:var(--accent-2); background:rgb(var(--accent-rgb) / .25); }
-  .chapter-list a.cta { grid-column:1 / -1; justify-content:center; background:var(--accent); border-color:var(--accent); font-weight:500; }
-  .chapter-list a.cta .n { color:var(--accent-soft); }
-  .scrim { position:fixed; inset:0; z-index:9; background:rgb(0 0 0 / .4); }
+  .chapter-list a { display:flex; gap:10px; align-items:baseline; padding:13px 12px; border-radius:12px; font-size:15px; color:var(--ink); text-decoration:none; background:var(--surface); border:1px solid var(--line); }
+  .chapter-list a .n { font-size:12px; font-weight:600; color:var(--accent); font-variant-numeric:tabular-nums; }
+  .chapter-list a[aria-current="true"] { border-color:var(--ink); }
+  .chapter-list a.cta { grid-column:1 / -1; justify-content:center; background:var(--pop); border-color:var(--pop); font-weight:600; }
+  .chapter-list a.cta .n { color:var(--ink); }
+  .scrim { position:fixed; inset:0; z-index:9; background:rgb(var(--ink-rgb) / .25); }
   .scrim[hidden] { display:none; }
 
   /* Chapters: each starts at the top of the screen and ends with "Next: … ↓". */
   .chapter { min-height:calc(100vh - var(--bar)); min-height:calc(100svh - var(--bar)); scroll-snap-align:start; }
-  .chapter.light + .chapter.light { border-top:1px solid var(--border); }
+  .chapter.light + .chapter.light { border-top:1px solid var(--line); }
   .next-row { padding-top:36px; }
-  .chapter-intro .next-row { padding-block:28px 40px; }
-  .next-down { display:inline-block; padding:11px 18px; border-radius:999px; font-size:14px; font-weight:500; text-decoration:none; border:1px solid var(--border); background:#fff; color:var(--accent); }
-  .dark .next-down, .chapter-intro .next-down { background:var(--card); border-color:var(--line); color:var(--accent-2); }
-  .next-down:hover { border-color:var(--accent-2); }
-  .chapter.dark { padding-block:24px 64px; }
+  .chapter-intro .next-row { padding-block:20px 32px; }
+  .next-down { display:inline-block; padding:11px 18px; border-radius:999px; font-size:14px; font-weight:600; text-decoration:none; border:2px solid var(--ink); background:transparent; color:var(--ink); }
+  .next-down:hover { background:var(--pop); }
+  .dark .next-down { border-color:var(--night-line); color:var(--pop); }
+  .dark .next-down:hover { background:var(--night-card); }
+  .chapter.dark { background:var(--night); color:#fff; padding-block:24px 64px; }
   .chapter-contact { display:grid; align-content:center; }
   .chapter-contact .wrap { width:100%; padding-top:40px; }
 
-  .btn { display:inline-block; padding:13px 26px; border-radius:999px; font-weight:500; font-size:15px; text-decoration:none; transition:transform .15s, background .15s, border-color .15s; }
+  .btn { display:inline-block; padding:14px 26px; border-radius:999px; font-weight:600; font-size:15px; text-decoration:none; transition:transform .15s, background .15s; }
   .btn:hover { transform:translateY(-1px); }
-  .btn-accent { background:var(--accent); color:#fff; box-shadow:0 8px 30px rgb(var(--accent-rgb) / .45); }
-  .btn-accent:hover { background:var(--accent-hover); }
-  .btn-line { border:1px solid var(--line); color:var(--white); }
-  .btn-line:hover { border-color:var(--accent-2); }
+  .btn-solid { background:var(--ink); color:var(--bg); border:2px solid var(--ink); }
+  .btn-line { border:2px solid var(--ink); color:var(--ink); }
+  .btn-line:hover { background:var(--surface); }
 
-  /* hero */
-  .hero { position:relative; overflow:hidden; padding:96px 0 120px; }
-  .hero::before { content:""; position:absolute; inset:-20% -10% auto 35%; height:720px;
-    background:radial-gradient(closest-side, rgb(var(--accent-rgb) / .55), rgb(var(--accent-rgb) / 0) 70%); filter:blur(20px); }
-  .hero::after { content:""; position:absolute; inset:0;
-    background-image:radial-gradient(rgb(var(--accent-2-rgb) / .2) 1px, transparent 1px); background-size:22px 22px;
-    mask-image:linear-gradient(110deg, transparent 45%, #000 75%); -webkit-mask-image:linear-gradient(110deg, transparent 45%, #000 75%); }
-  .hero .wrap { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1.05fr; gap:48px; align-items:center; }
-  .badge { display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--accent-2); background:rgb(var(--accent-rgb) / .14); border:1px solid rgb(var(--accent-2-rgb) / .3); padding:6px 14px; border-radius:999px; margin-bottom:28px; }
-  .badge i { width:7px; height:7px; border-radius:50%; background:var(--accent-2); box-shadow:0 0 0 3px rgb(var(--accent-2-rgb) / .2); }
-  h1 { font-size:clamp(46px, 5.6vw, 70px); line-height:1.02; letter-spacing:-.02em; }
-  h1 em { font-style:italic; color:var(--accent-2); }
-  .lede { margin-top:24px; font-size:19px; color:var(--muted); max-width:46ch; }
-  .actions { margin-top:36px; display:flex; gap:12px; flex-wrap:wrap; }
-  .quote { margin:22px 0 0; padding:2px 0 2px 18px; border-left:3px solid var(--accent-2); max-width:46ch; }
-  .quote p { font-family:"Instrument Serif", Georgia, serif; font-style:italic; font-size:21px; line-height:1.35; color:var(--white); }
-  .quote cite { display:block; margin-top:6px; font-style:normal; font-size:13px; color:var(--accent-2); letter-spacing:.04em; }
-  .quote cite::before { content:"— "; }
+  /* Intro (option B): her name huge, the brand line with a lime highlight, a fan of three photos, and a ticker. */
+  .hero { position:relative; overflow-x:clip; padding:56px 0 48px; }
+  .hero .wrap { display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; }
+  h1 { font-size:clamp(64px, 9vw, 132px); line-height:.88; }
+  h1 span { display:block; color:var(--accent); }
+  .tagline { margin-top:24px; font-family:"Bricolage Grotesque", Inter, sans-serif; font-weight:500; font-size:clamp(22px, 2.4vw, 30px); line-height:1.25; letter-spacing:-.01em; max-width:22ch; }
+  .lede { margin-top:16px; font-size:17px; color:var(--muted); max-width:46ch; }
+  .actions { margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; }
 
-  /* Portrait (Paul, 2026-11-06): one still photo in an arched frame with an offset outline, and a caption under it.
-     Deliberately different from the earlier site this was built from: no stat cards, nothing bounces. */
-  .portrait { position:relative; justify-self:center; margin:0; width:min(400px, 100%); }
-  .portrait .frame, .portrait::before { aspect-ratio:4/5; border-radius:999px 999px 28px 28px; }
-  .portrait::before { content:""; position:absolute; top:18px; left:18px; width:100%; border:2px solid rgb(var(--accent-2-rgb) / .55); }
-  .portrait .frame { position:relative; overflow:hidden; box-shadow:0 30px 70px rgb(0 0 0 / .5);
-    background:linear-gradient(160deg, var(--accent-pale) 0%, var(--accent) 55%, var(--accent-night) 100%); }
-  .portrait .frame img { width:100%; height:100%; object-fit:cover; object-position:50% 30%; display:block; } /* square headshot: the arch trims the sides */
-  .portrait figcaption { position:relative; margin-top:30px; text-align:center; font-size:14px; color:var(--muted); }
-  .portrait figcaption b { color:var(--white); font-weight:500; }
-  @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  /* Three photos fanned like prints on a board; sized from the fan's own height so it scales with the screen. Her headshot sits on top. */
+  .fan { position:relative; container-type:size; height:min(540px, 62vh); height:min(540px, 62svh); }
+  .fan figure { position:absolute; margin:0; background:#fff; padding:10px 10px 32px; border-radius:6px; box-shadow:0 18px 40px rgb(var(--ink-rgb) / .18); }
+  .fan img { display:block; object-fit:cover; border-radius:2px; width:auto; }
+  .fan figcaption { position:absolute; left:12px; bottom:8px; font-size:12px; font-weight:600; color:var(--muted); white-space:nowrap; }
+  .fan .f1 { left:0; top:12%; transform:rotate(-7deg); } .fan .f1 img { height:34cqh; aspect-ratio:3/2; }
+  .fan .f2 { right:0; top:40%; transform:rotate(6deg); } .fan .f2 img { height:46cqh; aspect-ratio:2/3; object-position:50% 20%; }
+  .fan .f3 { left:21%; top:0; transform:rotate(-1.5deg); z-index:2; } .fan .f3 img { height:70cqh; aspect-ratio:4/5; object-position:50% 30%; }
 
-  /* light section */
-  .light { background:var(--paper); color:var(--ink); padding:88px 0 72px; }
+  .ticker { background:var(--ink); color:var(--bg); overflow:hidden; white-space:nowrap; font-family:"Bricolage Grotesque", Inter, sans-serif; font-weight:500; font-size:19px; padding:13px 0; }
+  .ticker div { display:inline-block; animation:roll 40s linear infinite; }
+  .ticker i { color:var(--pop); font-style:normal; margin:0 18px; }
+  @keyframes roll { to { transform:translateX(-50%); } }
+  @media (prefers-reduced-motion:reduce) { .ticker div { animation:none; } html { scroll-behavior:auto; } }
+
+  /* light chapters */
+  .light { background:var(--surface); padding:88px 0 72px; }
   .eyebrow { font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
-  .dark .eyebrow { color:var(--accent-2); }
-  h2 { font-size:clamp(38px, 5.5vw, 60px); line-height:1.02; letter-spacing:-.015em; margin-bottom:20px; }
+  .dark .eyebrow { color:var(--pop); }
+  h2 { font-size:clamp(40px, 5.5vw, 64px); line-height:.98; margin-bottom:20px; }
   .about { display:grid; grid-template-columns:1fr 1.25fr; gap:56px; margin-bottom:72px; }
-  .about p { font-size:18px; color:var(--muted-dark); }
+  .about p { font-size:18px; color:var(--muted); }
   .about p + p { margin-top:16px; }
   .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-  .card { background:#fff; border:1px solid var(--border); border-radius:20px; padding:30px; transition:border-color .2s, box-shadow .2s; }
-  .card:hover { border-color:var(--accent-2); box-shadow:0 12px 40px rgb(var(--accent-rgb) / .12); }
-  .summary { font-size:19px; color:var(--muted-dark); max-width:68ch; margin-bottom:44px; }
-  .card small { display:inline-block; font-size:12px; font-weight:600; color:var(--accent); background:var(--accent-soft); padding:4px 10px; border-radius:999px; }
-  .card h3 { font-size:21px; margin:14px 0 6px; font-weight:600; letter-spacing:-.01em; }
-  .card p { color:var(--muted-dark); }
+  .card { background:var(--bg); border:1px solid var(--line); border-radius:18px; padding:28px; }
+  .summary { font-size:19px; color:var(--muted); max-width:68ch; margin-bottom:44px; }
+  .card small { display:inline-block; font-size:12px; font-weight:600; color:var(--ink); background:var(--pop); padding:4px 10px; border-radius:999px; }
+  .card h3 { font-family:"Bricolage Grotesque", Inter, sans-serif; font-size:22px; margin:14px 0 6px; font-weight:700; letter-spacing:-.01em; }
+  .card p { color:var(--muted); }
 
   /* timeline */
-  .timeline { border-left:2px solid var(--border); margin-left:6px; }
+  .timeline { border-left:2px solid var(--line); margin-left:6px; }
   .role { position:relative; padding:0 0 36px 32px; }
   .role:last-child { padding-bottom:0; }
-  .role::before { content:""; position:absolute; left:-8px; top:6px; width:14px; height:14px; border-radius:50%; background:var(--accent); border:3px solid var(--paper); }
+  .role::before { content:""; position:absolute; left:-8px; top:6px; width:14px; height:14px; border-radius:50%; background:var(--pop); border:3px solid var(--ink); }
   .role .when { font-size:13px; font-weight:600; color:var(--accent); letter-spacing:.04em; }
-  .role h3 { font-size:20px; font-weight:600; letter-spacing:-.01em; margin:2px 0; }
-  .role h3 span { font-weight:400; color:var(--muted-dark); }
-  .role ul { margin-top:8px; padding-left:18px; color:var(--muted-dark); }
+  .role h3 { font-family:"Bricolage Grotesque", Inter, sans-serif; font-size:22px; font-weight:700; letter-spacing:-.01em; margin:2px 0; }
+  .role h3 span { font-family:Inter, sans-serif; font-size:17px; font-weight:400; color:var(--muted); }
+  .role ul { margin-top:8px; padding-left:18px; color:var(--muted); }
   .role li { margin-top:4px; }
 
   /* skills */
   .skills { padding:100px 0 40px; }
   .pills { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
-  .pills span { border:1px solid var(--line); background:var(--card); padding:10px 18px; border-radius:999px; font-size:15px; }
-  .pills span.todo { border-style:dashed; color:var(--accent-2); }
+  .pills span { border:1px solid var(--night-line); background:var(--night-card); padding:10px 18px; border-radius:999px; font-size:15px; }
+  .pills span.todo { border-style:dashed; }
 
-  /* contact */
-  .contact { margin:0 0 72px; border-radius:32px; padding:64px 56px; position:relative; overflow:hidden;
-    display:grid; grid-template-columns:1fr; gap:48px; align-items:start;
-    background:radial-gradient(120% 140% at 0% 0%, var(--accent) 0%, var(--accent-deep) 55%, var(--accent-night) 100%); }
-  .contact h2 { color:#fff; }
-  .contact > div > p { color:var(--accent-soft); font-size:18px; margin-bottom:28px; max-width:40ch; }
-  .contact .btn-line { border-color:rgb(255 255 255 / .35); }
-  .contact .btn-white { background:#fff; color:var(--ink); font:inherit; font-weight:500; border:0; cursor:pointer; }
+  /* contact: a lime panel on the dark chapter */
+  .contact { margin:0 0 72px; border-radius:28px; padding:64px 56px; background:var(--pop); color:var(--ink);
+    display:grid; grid-template-columns:1fr; gap:48px; align-items:start; }
+  .contact > div > p { font-size:18px; margin-bottom:28px; max-width:40ch; }
   .contact .row { display:flex; gap:12px; flex-wrap:wrap; }
+  .contact button.btn { font:inherit; font-weight:600; cursor:pointer; }
   .contact.open { grid-template-columns:1fr 1.1fr; }
   .contact .row .btn[aria-expanded="true"] { display:none; } /* the open form's own button hides */
   .contact.open .form { animation:reveal .35s ease-out; }
   @keyframes reveal { from { opacity:0; transform:translateY(12px); } }
 
   /* contact form (Formspree) */
-  .form { background:#fff; color:var(--ink); border-radius:22px; padding:30px; display:grid; gap:16px; box-shadow:0 24px 60px rgb(0 0 0 / .35); }
+  .form { background:var(--surface); color:var(--ink); border-radius:20px; padding:30px; display:grid; gap:16px; box-shadow:0 24px 60px rgb(var(--ink-rgb) / .25); }
   .form[hidden] { display:none; }
   .form .two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
   .form label { display:grid; gap:6px; font-size:14px; font-weight:500; }
-  .form label small { color:var(--muted-dark); font-weight:400; }
-  .form input, .form textarea { font:inherit; font-size:15px; color:var(--ink); background:var(--paper); border:1px solid var(--border); border-radius:12px; padding:12px 14px; width:100%; }
+  .form label small { color:var(--muted); font-weight:400; }
+  .form input, .form textarea { font:inherit; font-size:15px; color:var(--ink); background:var(--bg); border:1px solid var(--line); border-radius:12px; padding:12px 14px; width:100%; }
   .form textarea { min-height:130px; resize:vertical; }
-  .form input:focus, .form textarea:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
+  .form input:focus, .form textarea:focus { outline:none; border-color:var(--ink); box-shadow:0 0 0 3px var(--pop); }
   .form .hp { position:absolute; left:-9999px; }
-  .form button { font:inherit; border:0; cursor:pointer; justify-self:start; }
+  .form button { justify-self:start; }
   .form button:disabled { opacity:.6; cursor:wait; }
   .form-status { font-size:14px; min-height:1.2em; }
   .form-status.ok { color:#15803d; }
   .form-status.err { color:#b91c1c; }
-  footer { color:var(--muted); font-size:14px; padding:0 0 40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  footer { color:var(--night-muted); font-size:14px; padding:0 0 40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
 
   /* Desktop slides: above 960px site.js adds html.slides and shows one chapter at a time under the bar,
      so the page itself never scrolls; a long chapter scrolls a little inside itself. Without JavaScript the page scrolls as normal. */
@@ -192,20 +181,17 @@
   @keyframes slide-in { from { opacity:0; transform:translateY(16px); } }
   @media (prefers-reduced-motion:reduce) { html.slides .chapter.on { animation:none; } }
   html.slides .next-row { padding-top:24px; }
-  html.slides h2 { font-size:clamp(36px, 6vh, 56px); margin-bottom:14px; }
+  html.slides h2 { font-size:clamp(38px, 6.4vh, 60px); margin-bottom:14px; }
   html.slides .eyebrow { margin-bottom:10px; }
-  /* intro: hero fills the screen */
+  /* intro: hero fills the screen above the ticker */
   html.slides .chapter-intro { padding-block:0; }
-  html.slides .hero { flex:1 0 auto; display:flex; align-items:center; padding:clamp(12px, 3vh, 44px) 0; }
-  html.slides .hero .wrap { width:100%; grid-template-columns:1.15fr 1fr; }
-  html.slides h1 { font-size:clamp(42px, 7.6vh, 70px); }
-  html.slides .lede { font-size:clamp(16px, 2.4vh, 19px); margin-top:clamp(14px, 2.6vh, 24px); }
-  html.slides .actions { margin-top:clamp(16px, 2.6vh, 30px); }
-  html.slides .badge { margin-bottom:clamp(12px, 2.2vh, 24px); }
-  html.slides .quote { margin-top:clamp(12px, 2vh, 20px); max-width:none; }
-  html.slides .quote p { font-size:clamp(16px, 2.2vh, 20px); line-height:1.3; }
-  html.slides .portrait { width:min(400px, 100%, calc((100svh - var(--bar) - 250px) * .8)); } /* frame + caption fit under the bar */
-  html.slides .chapter-intro .next-row { padding-block:12px 16px; }
+  html.slides .hero { flex:1 0 auto; display:flex; align-items:center; padding:clamp(12px, 3vh, 40px) 0; }
+  html.slides .hero .wrap { width:100%; }
+  html.slides h1 { font-size:clamp(64px, 14vh, 132px); }
+  html.slides .tagline { margin-top:clamp(14px, 2.6vh, 24px); }
+  html.slides .actions { margin-top:clamp(16px, 2.6vh, 28px); }
+  html.slides .fan { height:min(540px, calc(100svh - var(--bar) - 220px)); }
+  html.slides .chapter-intro .next-row { padding-block:10px 14px; text-align:center; }
   html.slides .about { margin-bottom:36px; }
   html.slides .skills { padding:0; }
   html.slides .contact { margin-bottom:20px; padding:clamp(28px, 5vh, 52px) 48px; }
@@ -218,28 +204,24 @@
     .picker { display:inline-flex; }
   }
   @media (max-width:860px) {
-    .hero { padding:24px 0 72px; }
-    .hero .wrap, .about { grid-template-columns:1fr; gap:32px; }
-    /* photo first on phones so her face and the headline share the first screen */
-    /* on short screens (e.g. iPhone Safari) the photo shrinks a little so the headline still fits on the first screen */
-    .portrait { order:-1; width:min(62%, 32vh); width:min(62%, 32svh); }
-    .portrait::before { top:10px; left:10px; }
-    .portrait figcaption { margin-top:16px; font-size:13px; }
-    .badge { margin-bottom:18px; }
+    .hero { padding:12px 0 36px; }
+    .hero .wrap, .about { grid-template-columns:1fr; gap:12px; }
+    /* photos first on phones; short screens (iPhone Safari) shrink them so her name still fits on the first screen */
+    .fan { order:-1; height:min(260px, 34vh); height:min(260px, 34svh); }
+    .fan figure { padding:6px 6px 22px; }
+    .fan figcaption { left:8px; bottom:4px; font-size:10px; }
+    .about { gap:32px; }
     .grid { grid-template-columns:1fr; }
-    .contact, .contact.open { padding:48px 20px; grid-template-columns:1fr; gap:32px; }
+    .contact, .contact.open { padding:44px 20px; grid-template-columns:1fr; gap:32px; }
     .form { padding:22px; }
     .form .two { grid-template-columns:1fr; }
-  }
-  @media (max-width:480px) {
-    h1 { font-size:40px; } /* keeps the headline short enough to fit the first screen */
   }
 </style>
 </head>
 <body>
 <header class="bar">
 <div class="wrap bar-inner">
-  <a class="logo" href="#intro">Nicole<b>.</b></a>
+  <a class="logo" href="#intro">Nicole Foley</a>
   <nav class="names" aria-label="Chapters"><a href="#intro">Intro</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact" class="cta">Contact</a></nav>
   <button class="picker" id="picker" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="chapter-list"><span class="n">01</span><span class="pl">Intro</span><span class="chev" aria-hidden="true">▼</span><i class="fill" aria-hidden="true"></i></button>
 </div>
@@ -252,23 +234,28 @@
 <section class="chapter chapter-intro" id="intro" data-label="Intro">
 <div class="hero"><div class="wrap">
   <div>
-    <div class="badge"><i></i>Senior Account Executive · Greater Philadelphia</div>
-    <!-- Draft headline from her LinkedIn (2026-11-06); to be confirmed once her résumé arrives. -->
-    <h1 class="serif">Nicole brings brands to life, <em>in person</em>.</h1>
-    <p class="lede">Senior Account Executive at Lime Media, an experiential marketing company. <span class="todo">More from Nicole’s résumé</span></p>
-    <blockquote class="quote"><p><span class="todo">A sentence or two in Nicole’s own words</span></p><cite>Nicole</cite></blockquote>
+    <h1 class="display">Nicole <span>Foley</span></h1>
+    <!-- Draft brand line (option B, 2026-11-07); to be confirmed with Nicole. -->
+    <p class="tagline">Making brands <mark>impossible to miss</mark>, in the real world.</p>
+    <p class="lede">Senior Account Executive at Lime Media, an experiential marketing company. Based in Greater Philadelphia.</p>
     <div class="actions">
-      <a class="btn btn-accent" href="#contact">Connect with Nicole</a>
+      <a class="btn btn-solid" href="#contact">Connect with Nicole</a>
       <a class="btn btn-line" href="#experience">See her experience</a>
     </div>
   </div>
-  <figure class="portrait">
-    <!-- Headshot via Paul, 2026-11-06 (original in mockups/photos/headshot.jpeg; web copy re-encoded without metadata). -->
-    <div class="frame"><img src="images/nicole-headshot.jpg" alt="Nicole Foley smiling, in a white shirt" width="774" height="774"></div>
-    <figcaption><b>Nicole Foley</b> · Lime Media</figcaption>
-  </figure>
+  <!-- Photos via Paul (originals in mockups/photos/; web copies re-encoded without metadata). Dates match her LinkedIn posts:
+       the green cars 2025-07-31, NY Ad Week 2025-10-13. -->
+  <div class="fan">
+    <figure class="f1"><img src="images/wicked-green-cars.jpg" alt="Bright green Wicked cars lined up in Times Square" width="900" height="600"><figcaption>Wicked · Times Square</figcaption></figure>
+    <figure class="f2"><img src="images/nicole-ny-ad-week.jpg" alt="Nicole at an NY Ad Week event" width="600" height="900"><figcaption>NY Ad Week</figcaption></figure>
+    <figure class="f3"><img src="images/nicole-headshot.jpg" alt="Nicole Foley smiling, in a white shirt" width="774" height="774"><figcaption>Nicole</figcaption></figure>
+  </div>
 </div></div>
-
+<!-- The highlights roll past like a Times Square ticker; still for visitors who ask for reduced motion. The list is written twice so it loops seamlessly. -->
+<div class="ticker" aria-hidden="true"><div>
+  Wicked green cars <i>✦</i> Times Square <i>✦</i> NY Ad Week <i>✦</i> Philadelphia Ad Club <i>✦</i> Monday Girl <i>✦</i> Lime Media <i>✦</i> Experiential marketing <i>✦</i>
+  Wicked green cars <i>✦</i> Times Square <i>✦</i> NY Ad Week <i>✦</i> Philadelphia Ad Club <i>✦</i> Monday Girl <i>✦</i> Lime Media <i>✦</i> Experiential marketing <i>✦</i>
+</div></div>
 <div class="wrap">
   <div class="next-row"><a class="next-down" href="#about">Next: About ↓</a></div>
 </div>
@@ -277,7 +264,7 @@
 <section class="chapter light" id="about" data-label="About">
 <div class="wrap">
   <div class="about">
-    <div><div class="eyebrow">About</div><h2 class="serif">Hi, I’m Nicole.</h2></div>
+    <div><div class="eyebrow">About</div><h2 class="display">Hi, I’m Nicole.</h2></div>
     <div>
       <p>I’m a Senior Account Executive at Lime Media, an experiential marketing company, based in Greater Philadelphia.</p>
       <p><span class="todo">What she does, the brands and events she has worked on, and what she’s known for, from her résumé</span></p>
@@ -297,7 +284,7 @@
 <section class="chapter light" id="experience" data-label="Experience">
 <div class="wrap">
   <div class="eyebrow">Experience</div>
-  <h2 class="serif">Career journey.</h2>
+  <h2 class="display">Career journey.</h2>
   <p class="summary"><span class="todo">A two-sentence summary of her career, from her résumé</span></p>
   <div class="timeline">
     <div class="role">
@@ -324,7 +311,7 @@
 <div class="wrap">
 <div class="skills">
   <div class="eyebrow">Skills</div>
-  <h2 class="serif">What she brings.</h2>
+  <h2 class="display">What she brings.</h2>
   <div class="pills skill-pills">
     <span>Experiential marketing</span><span class="todo">More skills from her résumé</span>
   </div>
@@ -337,10 +324,10 @@
 <div class="wrap">
   <div class="contact" id="contact-panel">
     <div>
-      <h2 class="serif">Let’s connect.</h2>
+      <h2 class="display">Let’s connect.</h2>
       <p>Planning a brand experience, or want to talk shop? Send Nicole a note and she’ll get back to you.</p>
       <div class="row">
-        <button class="btn btn-white js-open-contact" type="button" aria-expanded="false" aria-controls="contact-form">Send a message</button>
+        <button class="btn btn-solid js-open-contact" type="button" aria-expanded="false" aria-controls="contact-form">Send a message</button>
         <a class="btn btn-line" href="https://www.linkedin.com/in/nicole-foley-/" target="_blank" rel="noopener">Connect on LinkedIn</a>
       </div>
     </div>
@@ -354,7 +341,7 @@
       <label>Message<textarea name="message" required></textarea></label>
       <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="_subject" value="New message from Nicole's website">
-      <button class="btn btn-accent" type="submit">Send message</button>
+      <button class="btn btn-solid" type="submit">Send message</button>
       <p class="form-status" role="status" aria-live="polite"></p>
     </form>
   </div>

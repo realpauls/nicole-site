@@ -30,7 +30,9 @@ export const PUBLIC_FILES = [
   '404.html',
   '_headers',
   'images/nicole-headshot.jpg',
-  'images/share-card.jpg',
+  'images/nicole-ny-ad-week.jpg',
+  'images/share-card-b.jpg',
+  'images/wicked-green-cars.jpg',
   'index.html',
   'robots.txt',
   'site.js',
@@ -68,7 +70,7 @@ export const BUDGET = {
   image: 350_000,
 };
 
-export const SHARE_CARD = { file: 'images/share-card.jpg', width: 1200, height: 630 };
+export const SHARE_CARD = { file: 'images/share-card-b.jpg', width: 1200, height: 630 };
 
 // Facts that must appear on the page. Source so far: her LinkedIn (screenshot via Paul, 2026-11-06). Her résumé will win where they differ.
 export const CONTENT = [
@@ -97,6 +99,16 @@ export const FORBIDDEN = [
 // doesn't name them) the template site's owner's names, employer, domain and form id.
 export const LEFTOVERS = [/#7c3aed/i, /purple/i, /NYPD/];
 export const LEFTOVER_WORD_HASHES = ['81ccc0de58dd19cf', 'b8b22aedc372aa89', 'ee58f33c8d93429f', 'e44bb89c8125ff4b', '66f86b1f3c61159b'];
+
+// The intro is option B "Marquee", Nicole's pick from four designs (via Paul, 2026-11-07): her name as the headline,
+// the brand line with a lime highlight, three photos fanned with her headshot on top, and a ticker of highlights.
+export const INTRO = {
+  name: 'Nicole Foley',
+  tagline: 'Making brands impossible to miss, in the real world.',
+  highlight: 'impossible to miss',
+  photos: ['images/wicked-green-cars.jpg', 'images/nicole-ny-ad-week.jpg', 'images/nicole-headshot.jpg'], // back to front
+  ticker: ['Wicked green cars', 'Times Square', 'NY Ad Week', 'Philadelphia Ad Club', 'Monday Girl', 'Lime Media', 'Experiential marketing'],
+};
 
 // The 5 chapters, in page order (the template site's layout, Paul 2026-11-06). Both the desktop names and the phone picker list them all.
 export const CHAPTERS = [

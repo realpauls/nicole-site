@@ -130,5 +130,5 @@ test('missing pages show the branded 404 with a working link home', async ({ pag
   expect(res.status()).toBe(404);
   await expect(page.locator('h1')).toContainText('detour');
   await page.locator('a', { hasText: 'Back to Nicole' }).click();
-  await expect(page.locator('h1')).toContainText('in person');
+  await expect(page.locator('h1')).toContainText('Nicole Foley');
 });

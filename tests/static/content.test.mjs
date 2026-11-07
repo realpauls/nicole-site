@@ -63,11 +63,11 @@ test('US spelling in visible text (Paul, 2026-11-05)', () => {
 
 test('every color comes from the tokens at the top of the stylesheet, so a new scheme is one edit', () => {
   const css = html.match(/<style>([\s\S]*?)<\/style>/)[1];
-  const tokens = css.match(/:root \{[^}]*--black[\s\S]*?\}/)[0];
+  const tokens = css.match(/:root \{[^}]*--bg:[\s\S]*?\}/)[0];
   const rest = css.replace(tokens, '');
   // Outside the tokens only white, black and neutral greys/shadows (rgb with equal channels), plus the form's ok/error colors.
   const hexes = [...rest.matchAll(/#[0-9a-f]{3,8}\b/gi)].map((m) => m[0].toLowerCase()).filter((h) => !['#fff', '#000', '#15803d', '#b91c1c'].includes(h));
   assert.deepEqual(hexes, [], 'hard-coded colors outside :root');
-  const rgbs = [...rest.matchAll(/rgb\((\d+) (\d+) (\d+)/g)].filter((m) => !(m[1] === m[2] && m[2] === m[3]) && !(m[1] === '11' && m[2] === '17' && m[3] === '18'));
+  const rgbs = [...rest.matchAll(/rgb\((\d+) (\d+) (\d+)/g)].filter((m) => !(m[1] === m[2] && m[2] === m[3]));
   assert.deepEqual(rgbs.map((m) => m[0]), [], 'colored rgb() outside :root');
 });
