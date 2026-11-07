@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Pre-launch: keeps search engines from listing the site until Nicole approves it. Remove at launch. -->
+<meta name="robots" content="noindex, nofollow">
+<title>Nicole Foley · Senior Account Executive, Experiential Marketing</title>
+<meta name="description" content="Nicole Foley is a Senior Account Executive at Lime Media, an experiential marketing company, based in Greater Philadelphia.">
+<meta property="og:title" content="Nicole Foley · Senior Account Executive">
+<meta property="og:description" content="Experiential marketing at Lime Media. Based in Greater Philadelphia.">
+<meta property="og:type" content="website">
+<!-- At launch, make these absolute (https://<domain>/images/share-card.jpg) and add og:url + canonical -->
+<meta property="og:image" content="images/share-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230f766e'/><text x='32' y='44' font-family='Georgia,serif' font-size='34' fill='white' text-anchor='middle'>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Colors: placeholders until Nicole picks her scheme. Every color on the page comes from these tokens,
+     so a new scheme only changes this block (and the favicon above, 404.html and the share card). */
+  :root {
+    --black:#0b1112; --card:#131b1d; --line:#24302f;
+    --white:#ffffff; --paper:#f5f8f8; --ink:#101818; --muted:#9fb0b0; --muted-dark:#526363; --border:#dce8e7;
+    --accent:#0f766e; --accent-hover:#0b5f58; --accent-2:#5eead4; --accent-soft:#d5f5ef;
+    --accent-rgb:15 118 110; --accent-2-rgb:94 234 212;
+    --accent-deep:#134e4a; --accent-night:#062523; --accent-pale:#99f6e4;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  :root { --bar:64px; }
+  html { scroll-behavior:smooth; scroll-padding-top:var(--bar); scroll-snap-type:y proximity; }
+  body { font-family:Inter, system-ui, sans-serif; background:var(--black); color:var(--white); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
+  .serif { font-family:"Instrument Serif", Georgia, serif; font-weight:400; }
+  a { color:inherit; }
+
+  /* Draft placeholders: what Nicole's answers will fill in. A test keeps them off the page at launch. */
+  .todo { display:inline-block; padding:2px 10px; border:1px dashed rgb(var(--accent-2-rgb) / .6); border-radius:8px; background:rgb(var(--accent-rgb) / .1); color:var(--accent-2); font-size:.9em; font-style:normal; }
+  .light .todo { color:var(--accent); border-color:rgb(var(--accent-rgb) / .5); }
+
+  /* Top bar: name, then every chapter name on desktop; phones get one "01 Intro ▾" picker. */
+  .bar { position:sticky; top:0; z-index:10; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); background:rgb(11 17 18 / .9); border-bottom:1px solid rgb(255 255 255 / .06); }
+  .bar-inner { display:flex; align-items:center; gap:20px; height:var(--bar); }
+  .logo { flex:none; font-weight:600; font-size:19px; letter-spacing:-.01em; text-decoration:none; }
+  .logo b { color:var(--accent-2); }
+  .names { display:flex; gap:2px; margin-left:auto; }
+  .names a { padding:8px 12px; border-radius:999px; font-size:14px; color:var(--muted); text-decoration:none; white-space:nowrap; }
+  .names a:hover { color:var(--white); }
+  .names a[aria-current="true"] { background:rgb(var(--accent-rgb) / .3); color:var(--white); }
+  .names a.cta { margin-left:6px; background:var(--accent); color:#fff; font-weight:500; }
+  .names a.cta[aria-current="true"] { box-shadow:0 0 0 2px var(--accent-2); }
+  .picker { display:none; margin-left:auto; position:relative; overflow:hidden; align-items:center; gap:8px; height:42px; padding:0 16px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--white); font:inherit; font-size:15px; cursor:pointer; }
+  .picker .n { font-size:13px; color:var(--accent-2); font-variant-numeric:tabular-nums; }
+  .picker .chev { font-size:10px; color:var(--muted); transition:transform .2s; }
+  .picker[aria-expanded="true"] .chev { transform:rotate(180deg); }
+  .picker .fill { position:absolute; left:0; bottom:0; height:2px; width:20%; background:var(--accent-2); transition:width .3s; }
+  .chapter-list { position:absolute; left:0; right:0; top:100%; z-index:11; display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:10px 20px 16px; background:var(--black); border-bottom:1px solid var(--line); box-shadow:0 24px 40px rgb(0 0 0 / .45); }
+  .chapter-list[hidden] { display:none; }
+  .chapter-list a { display:flex; gap:10px; align-items:baseline; padding:13px 12px; border-radius:12px; font-size:15px; color:var(--white); text-decoration:none; background:var(--card); border:1px solid var(--line); }
+  .chapter-list a .n { font-size:12px; color:var(--accent-2); font-variant-numeric:tabular-nums; }
+  .chapter-list a[aria-current="true"] { border-color:var(--accent-2); background:rgb(var(--accent-rgb) / .25); }
+  .chapter-list a.cta { grid-column:1 / -1; justify-content:center; background:var(--accent); border-color:var(--accent); font-weight:500; }
+  .chapter-list a.cta .n { color:var(--accent-soft); }
+  .scrim { position:fixed; inset:0; z-index:9; background:rgb(0 0 0 / .4); }
+  .scrim[hidden] { display:none; }
+
+  /* Chapters: each starts at the top of the screen and ends with "Next: … ↓". */
+  .chapter { min-height:calc(100vh - var(--bar)); min-height:calc(100svh - var(--bar)); scroll-snap-align:start; }
+  .chapter.light + .chapter.light { border-top:1px solid var(--border); }
+  .next-row { padding-top:36px; }
+  .chapter-intro .next-row { padding-block:28px 40px; }
+  .next-down { display:inline-block; padding:11px 18px; border-radius:999px; font-size:14px; font-weight:500; text-decoration:none; border:1px solid var(--border); background:#fff; color:var(--accent); }
+  .dark .next-down, .chapter-intro .next-down { background:var(--card); border-color:var(--line); color:var(--accent-2); }
+  .next-down:hover { border-color:var(--accent-2); }
+  .chapter.dark { padding-block:24px 64px; }
+  .chapter-contact { display:grid; align-content:center; }
+  .chapter-contact .wrap { width:100%; padding-top:40px; }
+
+  .btn { display:inline-block; padding:13px 26px; border-radius:999px; font-weight:500; font-size:15px; text-decoration:none; transition:transform .15s, background .15s, border-color .15s; }
+  .btn:hover { transform:translateY(-1px); }
+  .btn-accent { background:var(--accent); color:#fff; box-shadow:0 8px 30px rgb(var(--accent-rgb) / .45); }
+  .btn-accent:hover { background:var(--accent-hover); }
+  .btn-line { border:1px solid var(--line); color:var(--white); }
+  .btn-line:hover { border-color:var(--accent-2); }
+
+  /* hero */
+  .hero { position:relative; overflow:hidden; padding:96px 0 120px; }
+  .hero::before { content:""; position:absolute; inset:-20% -10% auto 35%; height:720px;
+    background:radial-gradient(closest-side, rgb(var(--accent-rgb) / .55), rgb(var(--accent-rgb) / 0) 70%); filter:blur(20px); }
+  .hero::after { content:""; position:absolute; inset:0;
+    background-image:radial-gradient(rgb(var(--accent-2-rgb) / .2) 1px, transparent 1px); background-size:22px 22px;
+    mask-image:linear-gradient(110deg, transparent 45%, #000 75%); -webkit-mask-image:linear-gradient(110deg, transparent 45%, #000 75%); }
+  .hero .wrap { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1.05fr; gap:48px; align-items:center; }
+  .badge { display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--accent-2); background:rgb(var(--accent-rgb) / .14); border:1px solid rgb(var(--accent-2-rgb) / .3); padding:6px 14px; border-radius:999px; margin-bottom:28px; }
+  .badge i { width:7px; height:7px; border-radius:50%; background:var(--accent-2); box-shadow:0 0 0 3px rgb(var(--accent-2-rgb) / .2); }
+  h1 { font-size:clamp(46px, 5.6vw, 70px); line-height:1.02; letter-spacing:-.02em; }
+  h1 em { font-style:italic; color:var(--accent-2); }
+  .lede { margin-top:24px; font-size:19px; color:var(--muted); max-width:46ch; }
+  .actions { margin-top:36px; display:flex; gap:12px; flex-wrap:wrap; }
+  .quote { margin:22px 0 0; padding:2px 0 2px 18px; border-left:3px solid var(--accent-2); max-width:46ch; }
+  .quote p { font-family:"Instrument Serif", Georgia, serif; font-style:italic; font-size:21px; line-height:1.35; color:var(--white); }
+  .quote cite { display:block; margin-top:6px; font-style:normal; font-size:13px; color:var(--accent-2); letter-spacing:.04em; }
+  .quote cite::before { content:"— "; }
+
+  /* Portrait (Paul, 2026-11-06): one still photo in an arched frame with an offset outline, and a caption under it.
+     Deliberately different from the earlier site this was built from: no stat cards, nothing bounces. */
+  .portrait { position:relative; justify-self:center; margin:0; width:min(400px, 100%); }
+  .portrait .frame, .portrait::before { aspect-ratio:4/5; border-radius:999px 999px 28px 28px; }
+  .portrait::before { content:""; position:absolute; top:18px; left:18px; width:100%; border:2px solid rgb(var(--accent-2-rgb) / .55); }
+  .portrait .frame { position:relative; overflow:hidden; box-shadow:0 30px 70px rgb(0 0 0 / .5);
+    background:linear-gradient(160deg, var(--accent-pale) 0%, var(--accent) 55%, var(--accent-night) 100%); }
+  .portrait .frame img { width:100%; height:100%; object-fit:cover; object-position:50% 15%; display:block; }
+  .frame.placeholder { display:grid; place-items:center; text-align:center; padding:20px; color:#fff; font-size:15px; font-weight:500; }
+  .frame.placeholder span { padding:8px 14px; border:1px dashed rgb(255 255 255 / .7); border-radius:999px; background:rgb(0 0 0 / .18); }
+  .portrait figcaption { position:relative; margin-top:30px; text-align:center; font-size:14px; color:var(--muted); }
+  .portrait figcaption b { color:var(--white); font-weight:500; }
+  @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+
+  /* light section */
+  .light { background:var(--paper); color:var(--ink); padding:88px 0 72px; }
+  .eyebrow { font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+  .dark .eyebrow { color:var(--accent-2); }
+  h2 { font-size:clamp(38px, 5.5vw, 60px); line-height:1.02; letter-spacing:-.015em; margin-bottom:20px; }
+  .about { display:grid; grid-template-columns:1fr 1.25fr; gap:56px; margin-bottom:72px; }
+  .about p { font-size:18px; color:var(--muted-dark); }
+  .about p + p { margin-top:16px; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .card { background:#fff; border:1px solid var(--border); border-radius:20px; padding:30px; transition:border-color .2s, box-shadow .2s; }
+  .card:hover { border-color:var(--accent-2); box-shadow:0 12px 40px rgb(var(--accent-rgb) / .12); }
+  .summary { font-size:19px; color:var(--muted-dark); max-width:68ch; margin-bottom:44px; }
+  .card small { display:inline-block; font-size:12px; font-weight:600; color:var(--accent); background:var(--accent-soft); padding:4px 10px; border-radius:999px; }
+  .card h3 { font-size:21px; margin:14px 0 6px; font-weight:600; letter-spacing:-.01em; }
+  .card p { color:var(--muted-dark); }
+
+  /* timeline */
+  .timeline { border-left:2px solid var(--border); margin-left:6px; }
+  .role { position:relative; padding:0 0 36px 32px; }
+  .role:last-child { padding-bottom:0; }
+  .role::before { content:""; position:absolute; left:-8px; top:6px; width:14px; height:14px; border-radius:50%; background:var(--accent); border:3px solid var(--paper); }
+  .role .when { font-size:13px; font-weight:600; color:var(--accent); letter-spacing:.04em; }
+  .role h3 { font-size:20px; font-weight:600; letter-spacing:-.01em; margin:2px 0; }
+  .role h3 span { font-weight:400; color:var(--muted-dark); }
+  .role ul { margin-top:8px; padding-left:18px; color:var(--muted-dark); }
+  .role li { margin-top:4px; }
+
+  /* skills */
+  .skills { padding:100px 0 40px; }
+  .pills { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+  .pills span { border:1px solid var(--line); background:var(--card); padding:10px 18px; border-radius:999px; font-size:15px; }
+  .pills span.todo { border-style:dashed; color:var(--accent-2); }
+
+  /* contact */
+  .contact { margin:0 0 72px; border-radius:32px; padding:64px 56px; position:relative; overflow:hidden;
+    display:grid; grid-template-columns:1fr; gap:48px; align-items:start;
+    background:radial-gradient(120% 140% at 0% 0%, var(--accent) 0%, var(--accent-deep) 55%, var(--accent-night) 100%); }
+  .contact h2 { color:#fff; }
+  .contact > div > p { color:var(--accent-soft); font-size:18px; margin-bottom:28px; max-width:40ch; }
+  .contact .btn-line { border-color:rgb(255 255 255 / .35); }
+  .contact .btn-white { background:#fff; color:var(--ink); font:inherit; font-weight:500; border:0; cursor:pointer; }
+  .contact .row { display:flex; gap:12px; flex-wrap:wrap; }
+  .contact.open { grid-template-columns:1fr 1.1fr; }
+  .contact .row .btn[aria-expanded="true"] { display:none; } /* the open form's own button hides */
+  .contact.open .form { animation:reveal .35s ease-out; }
+  @keyframes reveal { from { opacity:0; transform:translateY(12px); } }
+
+  /* contact form (Formspree) */
+  .form { background:#fff; color:var(--ink); border-radius:22px; padding:30px; display:grid; gap:16px; box-shadow:0 24px 60px rgb(0 0 0 / .35); }
+  .form[hidden] { display:none; }
+  .form .two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .form label { display:grid; gap:6px; font-size:14px; font-weight:500; }
+  .form label small { color:var(--muted-dark); font-weight:400; }
+  .form input, .form textarea { font:inherit; font-size:15px; color:var(--ink); background:var(--paper); border:1px solid var(--border); border-radius:12px; padding:12px 14px; width:100%; }
+  .form textarea { min-height:130px; resize:vertical; }
+  .form input:focus, .form textarea:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
+  .form .hp { position:absolute; left:-9999px; }
+  .form button { font:inherit; border:0; cursor:pointer; justify-self:start; }
+  .form button:disabled { opacity:.6; cursor:wait; }
+  .form-status { font-size:14px; min-height:1.2em; }
+  .form-status.ok { color:#15803d; }
+  .form-status.err { color:#b91c1c; }
+  footer { color:var(--muted); font-size:14px; padding:0 0 40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+
+  /* Desktop slides: above 960px site.js adds html.slides and shows one chapter at a time under the bar,
+     so the page itself never scrolls; a long chapter scrolls a little inside itself. Without JavaScript the page scrolls as normal. */
+  html.slides { scroll-snap-type:none; scroll-behavior:auto; }
+  html.slides body { height:100vh; height:100svh; overflow:hidden; }
+  html.slides main { position:fixed; left:0; right:0; bottom:0; top:var(--bar); }
+  html.slides .chapter { position:absolute; inset:0; min-height:0; display:none; flex-direction:column; overflow-y:auto; overscroll-behavior:contain; padding-block:clamp(20px, 4vh, 40px); }
+  html.slides .chapter.on { display:flex; animation:slide-in .4s ease-out; }
+  html.slides .chapter:not(.chapter-intro) > .wrap { margin-block:auto; width:100%; } /* centered when it fits, top-aligned when it scrolls */
+  @keyframes slide-in { from { opacity:0; transform:translateY(16px); } }
+  @media (prefers-reduced-motion:reduce) { html.slides .chapter.on { animation:none; } }
+  html.slides .next-row { padding-top:24px; }
+  html.slides h2 { font-size:clamp(36px, 6vh, 56px); margin-bottom:14px; }
+  html.slides .eyebrow { margin-bottom:10px; }
+  /* intro: hero fills the screen */
+  html.slides .chapter-intro { padding-block:0; }
+  html.slides .hero { flex:1 0 auto; display:flex; align-items:center; padding:clamp(12px, 3vh, 44px) 0; }
+  html.slides .hero .wrap { width:100%; grid-template-columns:1.15fr 1fr; }
+  html.slides h1 { font-size:clamp(42px, 7.6vh, 70px); }
+  html.slides .lede { font-size:clamp(16px, 2.4vh, 19px); margin-top:clamp(14px, 2.6vh, 24px); }
+  html.slides .actions { margin-top:clamp(16px, 2.6vh, 30px); }
+  html.slides .badge { margin-bottom:clamp(12px, 2.2vh, 24px); }
+  html.slides .quote { margin-top:clamp(12px, 2vh, 20px); max-width:none; }
+  html.slides .quote p { font-size:clamp(16px, 2.2vh, 20px); line-height:1.3; }
+  html.slides .portrait { width:min(400px, 100%, calc((100svh - var(--bar) - 250px) * .8)); } /* frame + caption fit under the bar */
+  html.slides .chapter-intro .next-row { padding-block:12px 16px; }
+  html.slides .about { margin-bottom:36px; }
+  html.slides .skills { padding:0; }
+  html.slides .contact { margin-bottom:20px; padding:clamp(28px, 5vh, 52px) 48px; }
+  html.slides .chapter-contact .wrap { padding-top:0; }
+  html.slides footer { padding-bottom:0; }
+  html.slides .form textarea { min-height:100px; }
+
+  @media (max-width:960px) {
+    .names { display:none; }
+    .picker { display:inline-flex; }
+  }
+  @media (max-width:860px) {
+    .hero { padding:24px 0 72px; }
+    .hero .wrap, .about { grid-template-columns:1fr; gap:32px; }
+    /* photo first on phones so her face and the headline share the first screen */
+    /* on short screens (e.g. iPhone Safari) the photo shrinks a little so the headline still fits on the first screen */
+    .portrait { order:-1; width:min(62%, 32vh); width:min(62%, 32svh); }
+    .portrait::before { top:10px; left:10px; }
+    .portrait figcaption { margin-top:16px; font-size:13px; }
+    .frame.placeholder { font-size:13px; padding:12px; }
+    .badge { margin-bottom:18px; }
+    .grid { grid-template-columns:1fr; }
+    .contact, .contact.open { padding:48px 20px; grid-template-columns:1fr; gap:32px; }
+    .form { padding:22px; }
+    .form .two { grid-template-columns:1fr; }
+  }
+  @media (max-width:480px) {
+    h1 { font-size:40px; } /* keeps the headline short enough to fit the first screen */
+  }
+</style>
+</head>
+<body>
+<header class="bar">
+<div class="wrap bar-inner">
+  <a class="logo" href="#intro">Nicole<b>.</b></a>
+  <nav class="names" aria-label="Chapters"><a href="#intro">Intro</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact" class="cta">Contact</a></nav>
+  <button class="picker" id="picker" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="chapter-list"><span class="n">01</span><span class="pl">Intro</span><span class="chev" aria-hidden="true">▼</span><i class="fill" aria-hidden="true"></i></button>
+</div>
+<nav class="chapter-list" id="chapter-list" aria-label="All chapters" hidden><a href="#intro"><span class="n">01</span>Intro</a><a href="#about"><span class="n">02</span>About</a><a href="#experience"><span class="n">03</span>Experience</a><a href="#skills"><span class="n">04</span>Skills</a><a href="#contact" class="cta"><span class="n">05</span>Contact</a></nav>
+</header>
+<div class="scrim" id="scrim" hidden></div>
+
+<main>
+
+<section class="chapter chapter-intro" id="intro" data-label="Intro">
+<div class="hero"><div class="wrap">
+  <div>
+    <div class="badge"><i></i>Senior Account Executive · Greater Philadelphia</div>
+    <!-- Draft headline from her LinkedIn (2026-11-06); to be confirmed once her résumé arrives. -->
+    <h1 class="serif">Nicole brings brands to life, <em>in person</em>.</h1>
+    <p class="lede">Senior Account Executive at Lime Media, an experiential marketing company. <span class="todo">More from Nicole’s résumé</span></p>
+    <blockquote class="quote"><p><span class="todo">A sentence or two in Nicole’s own words</span></p><cite>Nicole</cite></blockquote>
+    <div class="actions">
+      <a class="btn btn-accent" href="#contact">Connect with Nicole</a>
+      <a class="btn btn-line" href="#experience">See her experience</a>
+    </div>
+  </div>
+  <figure class="portrait">
+    <div class="frame placeholder"><span>Nicole’s photo</span></div>
+    <figcaption><b>Nicole Foley</b> · Lime Media</figcaption>
+  </figure>
+</div></div>
+
+<div class="wrap">
+  <div class="next-row"><a class="next-down" href="#about">Next: About ↓</a></div>
+</div>
+</section>
+
+<section class="chapter light" id="about" data-label="About">
+<div class="wrap">
+  <div class="about">
+    <div><div class="eyebrow">About</div><h2 class="serif">Hi, I’m Nicole.</h2></div>
+    <div>
+      <p>I’m a Senior Account Executive at Lime Media, an experiential marketing company, based in Greater Philadelphia.</p>
+      <p><span class="todo">What she does, the brands and events she has worked on, and what she’s known for, from her résumé</span></p>
+    </div>
+  </div>
+
+  <div class="eyebrow">Beyond work</div>
+  <div class="grid">
+    <div class="card"><small>Education</small><h3>University of Delaware</h3><p><span class="todo">Degree and year</span></p></div>
+    <div class="card"><small>Off the clock</small><h3><span class="todo">Interests</span></h3><p><span class="todo">What she enjoys outside work</span></p></div>
+    <div class="card"><small>Community</small><h3><span class="todo">Groups or causes</span></h3><p><span class="todo">Optional</span></p></div>
+  </div>
+  <div class="next-row"><a class="next-down" href="#experience">Next: Experience ↓</a></div>
+</div>
+</section>
+
+<section class="chapter light" id="experience" data-label="Experience">
+<div class="wrap">
+  <div class="eyebrow">Experience</div>
+  <h2 class="serif">Career journey.</h2>
+  <p class="summary"><span class="todo">A two-sentence summary of her career, from her résumé</span></p>
+  <div class="timeline">
+    <div class="role">
+      <div class="when">NOW</div>
+      <h3>Senior Account Executive <span>· Lime Media</span></h3>
+      <ul><li><span class="todo">Highlights from her résumé</span></li></ul>
+    </div>
+    <div class="role">
+      <div class="when"><span class="todo">Dates</span></div>
+      <h3><span class="todo">Earlier roles</span></h3>
+      <ul><li><span class="todo">From her résumé</span></li></ul>
+    </div>
+    <div class="role">
+      <div class="when">EDUCATION</div>
+      <h3>University of Delaware</h3>
+      <ul><li><span class="todo">Degree</span></li></ul>
+    </div>
+  </div>
+  <div class="next-row"><a class="next-down" href="#skills">Next: Skills ↓</a></div>
+</div>
+</section>
+
+<section class="chapter dark" id="skills" data-label="Skills">
+<div class="wrap">
+<div class="skills">
+  <div class="eyebrow">Skills</div>
+  <h2 class="serif">What she brings.</h2>
+  <div class="pills skill-pills">
+    <span>Experiential marketing</span><span class="todo">More skills from her résumé</span>
+  </div>
+</div>
+  <div class="next-row"><a class="next-down" href="#contact">Next: Contact ↓</a></div>
+</div>
+</section>
+
+<section class="chapter dark chapter-contact" id="contact" data-label="Contact">
+<div class="wrap">
+  <div class="contact" id="contact-panel">
+    <div>
+      <h2 class="serif">Let’s connect.</h2>
+      <p>Planning a brand experience, or want to talk shop? Send Nicole a note and she’ll get back to you.</p>
+      <div class="row">
+        <button class="btn btn-white js-open-contact" type="button" aria-expanded="false" aria-controls="contact-form">Send a message</button>
+        <a class="btn btn-line" href="https://www.linkedin.com/in/nicole-foley-/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+    </div>
+    <!-- Formspree form not created yet: site.js says so instead of sending. Put the real form id in the action once Paul creates it. -->
+    <form class="form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" hidden>
+      <div class="two">
+        <label>Name<input name="name" autocomplete="name" required></label>
+        <label>Email<input type="email" name="email" autocomplete="email" required></label>
+      </div>
+      <label><span>Company <small>(optional)</small></span><input name="company" autocomplete="organization"></label>
+      <label>Message<textarea name="message" required></textarea></label>
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="_subject" value="New message from Nicole's website">
+      <button class="btn btn-accent" type="submit">Send message</button>
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+  <footer><span>© 2026 Nicole Foley</span><span>Greater Philadelphia</span></footer>
+</div>
+</section>
+
+</main>
+<script src="site.js?v=dc717111ac"></script>
+</body>
+</html>

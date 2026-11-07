@@ -1,0 +1,14 @@
+{
+  "name": "nicole-site-tests",
+  "private": true,
+  "type": "module",
+  "description": "Tests for Nicole Foley's site. Kept in tests/ so Cloudflare Pages never sees a package.json at the repo root.",
+  "scripts": {
+    "static": "cd .. && node --test tests/static/*.test.mjs",
+    "browser": "playwright test",
+    "test": "npm run static && npm run browser"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0"
+  }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://realpauls.github.io/nicole-site/sitemap.xml

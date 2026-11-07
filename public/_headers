@@ -1,0 +1,12 @@
+# Cloudflare Pages response headers (only read from the root of public/)
+# Adding a third-party service means updating this CSP and CLAUDE.md together. (GitHub Pages ignores this file; Cloudflare Pages reads it.)
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io https://cloudflareinsights.com; form-action https://formspree.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/images/*
+  Cache-Control: public, max-age=604800

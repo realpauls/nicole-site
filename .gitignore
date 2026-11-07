@@ -1,0 +1,11 @@
+# Local only: design drafts, original photos, planning notes and preview settings
+mockups/
+.claude/
+.DS_Store
+.playwright-mcp/
+PLAN.md
+NICOLE-QUESTIONS.md
+CLOUDFLARE-SETUP.md
+tests/node_modules/
+tests/test-results/
+tests/playwright-report/
