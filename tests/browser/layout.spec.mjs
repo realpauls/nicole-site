@@ -37,6 +37,30 @@ test('all three photos load, keep their shape, stay on screen, and her face is n
   expect(onTop).toBe('images/nicole-headshot.jpg');
 });
 
+test('the three prints read as one group: both side photos tuck behind the headshot by about the same amount', async ({ page }) => {
+  // Paul, 2026-11-08: on phones the NY Ad Week print sat apart from the others, unlike the Wicked one.
+  const [cars, adweek, head] = await Promise.all(['.f1', '.f2', '.f3'].map((f) => page.locator(`.fan ${f} img`).boundingBox()));
+  const leftTuck = cars.x + cars.width - head.x;    // how far the cars photo runs behind the headshot
+  const rightTuck = head.x + head.width - adweek.x; // how far the Ad Week photo runs behind it
+  expect(leftTuck, 'cars photo touches the headshot').toBeGreaterThan(0);
+  expect(rightTuck, 'Ad Week photo touches the headshot').toBeGreaterThan(0);
+  if (isPhoneLayout(page)) expect(Math.abs(leftTuck - rightTuck), `tucks ${Math.round(leftTuck)} vs ${Math.round(rightTuck)}`).toBeLessThan(head.width * 0.15);
+  // and enough of each side photo still shows to see what it is
+  expect(cars.width - leftTuck, 'cars photo visible').toBeGreaterThan(head.width * 0.35);
+  expect(adweek.width - rightTuck, 'Ad Week photo visible').toBeGreaterThan(head.width * 0.3);
+});
+
+test('on phones, the two hero buttons sit side by side, the same size, and big enough to tap', async ({ page }) => {
+  test.skip(!isPhoneLayout(page), 'phone layout only');
+  const [a, b] = await Promise.all((await page.locator('.hero .actions a').all()).map((el) => el.boundingBox()));
+  expect(Math.abs(a.y - b.y), 'same row').toBeLessThan(2);
+  expect(Math.abs(a.width - b.width), 'same width').toBeLessThan(2);
+  expect(Math.abs(a.height - b.height), 'same height').toBeLessThan(2);
+  expect(b.x + b.width).toBeLessThanOrEqual(page.viewportSize().width);
+  expect(a.height).toBeGreaterThanOrEqual(40);
+  expect(a.height, 'labels stay on one line').toBeLessThan(60);
+});
+
 test('the photos never cover her name, the brand line or the buttons', async ({ page }) => {
   const figs = await Promise.all((await page.locator('.fan figure').all()).map((f) => f.boundingBox()));
   for (const sel of ['h1', '.tagline', '.hero .actions']) {

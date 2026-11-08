@@ -218,6 +218,14 @@
     .fan { order:-1; height:min(260px, 34vh); height:min(260px, 34svh); }
     .fan figure { padding:6px 6px 22px; }
     .fan figcaption { left:8px; bottom:4px; font-size:10px; }
+    /* Phones (Paul, 2026-11-08): the three prints read as one centered group, each side print tucked 13cqh behind the
+       headshot. Print widths incl. 12px of frame: cars 45cqh, headshot 56cqh, Ad Week 33.3cqh; the group is 108.3cqh + 36px wide. */
+    .fan .f1 { left:calc(50% - 54.2cqh - 18px); top:20%; } .fan .f1 img { height:30cqh; }
+    .fan .f3 { left:calc(50% - 22.2cqh - 6px); }
+    .fan .f2 { right:auto; left:calc(50% + 20.8cqh + 6px); top:18%; } .fan .f2 img { height:50cqh; }
+    /* the two hero buttons share one row, same width, each label on one line */
+    .actions { flex-wrap:nowrap; gap:10px; }
+    .actions .btn { flex:1 1 0; padding:14px 8px; text-align:center; white-space:nowrap; font-size:clamp(12.5px, 3.7vw, 15px); }
     .about { gap:32px; }
     .grid { grid-template-columns:1fr; }
     .contact, .contact.open { padding:44px 20px; grid-template-columns:1fr; gap:32px; }
