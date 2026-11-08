@@ -223,6 +223,11 @@
     .fan .f1 { left:calc(50% - 54.2cqh - 18px); top:20%; } .fan .f1 img { height:30cqh; }
     .fan .f3 { left:calc(50% - 22.2cqh - 6px); }
     .fan .f2 { right:auto; left:calc(50% + 20.8cqh + 6px); top:18%; } .fan .f2 img { height:50cqh; }
+    /* Phones (Paul, 2026-11-08): her name on one line and the ticker pinned to the bottom of the screen while the intro
+       is showing, so the whole intro, ticker included, is on the first screen. Past the intro the ticker scrolls away. */
+    h1 { font-size:clamp(38px, 12.4vw, 64px); white-space:nowrap; } h1 span { display:inline; }
+    .ticker { position:sticky; bottom:0; z-index:3; font-size:16px; padding:10px 0; }
+    .fan { height:min(260px, 32vh); height:min(260px, 32svh); }
     /* the two hero buttons share one row, same width, each label on one line */
     .actions { flex-wrap:nowrap; gap:10px; }
     .actions .btn { flex:1 1 0; padding:14px 8px; text-align:center; white-space:nowrap; font-size:clamp(12.5px, 3.7vw, 15px); }

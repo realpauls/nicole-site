@@ -84,6 +84,27 @@ test('on desktop the photos, the ticker and "Next" all fit on the Intro screen',
   }
 });
 
+test('on phones her name sits on one line, and the ticker shows on the first screen without covering the buttons', async ({ page }) => {
+  // Paul, 2026-11-08: the ticker should be seen right away, so the name went to one line and the ticker pins to the bottom.
+  test.skip(!isPhoneLayout(page), 'phone layout only');
+  const h1 = page.locator('h1');
+  const lineHeight = await h1.evaluate((el) => parseFloat(getComputedStyle(el).fontSize) * 1.3);
+  expect((await h1.boundingBox()).height, 'one line').toBeLessThan(lineHeight);
+  const ticker = await page.locator('.ticker').boundingBox();
+  const actions = await page.locator('.hero .actions').boundingBox();
+  expect(ticker.y + ticker.height, 'ticker on the first screen').toBeLessThanOrEqual(page.viewportSize().height + 1);
+  expect(ticker.y, 'ticker below the buttons').toBeGreaterThanOrEqual(actions.y + actions.height);
+});
+
+test('on phones the pinned ticker scrolls away with the intro and never covers the next chapter', async ({ page }) => {
+  test.skip(!isPhoneLayout(page), 'phone layout only');
+  expect(await page.locator('.ticker').evaluate((el) => getComputedStyle(el).position)).toBe('sticky');
+  await page.evaluate(() => window.scrollTo({ top: document.getElementById('about').offsetTop - document.querySelector('.bar').offsetHeight, behavior: 'instant' }));
+  const ticker = await page.locator('.ticker').boundingBox();
+  const about = await page.locator('#about').boundingBox();
+  expect(ticker.y + ticker.height, 'ticker has left with the intro').toBeLessThanOrEqual(about.y + 1);
+});
+
 test('on phones, the photos and her name both fit on the first screen', async ({ page }) => {
   test.skip(!isPhoneLayout(page), 'phone layout only');
   const h1 = await page.locator('h1').boundingBox();
